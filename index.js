@@ -15,9 +15,17 @@ app.use(bodyParser.urlencoded({
 }));
 app.use('/tessellate', postData);
 
+let name = '';
+
+if (os.networkInterfaces().eth0 && Array.isArray(os.networkInterfaces().eth0)) {
+  const eth0 = os.networkInterfaces().eth0[0];
+  if (eth0.mac) {
+    name = eth0.mac.toString();
+  }
+}
+
 const payload = {
-  ip: '',
-  name: os.networkInterfaces().eth0[0].mac.toString(),
+  name,
   message: 'Tessel Prealpha',
 }
 
