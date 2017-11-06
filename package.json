@@ -7,7 +7,7 @@
     "test": "echo \"Error: no test specified\" && exit 1",
     "start": "node index.js"
   },
-  "repository": "www.github.com/tessel/t2-cli",
+  "repository": "https://github.com/cachilders/tessellate-peripheral",
   "keywords": [
     "tessel",
     "johnny-five",
