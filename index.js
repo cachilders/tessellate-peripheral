@@ -1,8 +1,9 @@
 const express = require('express');
 const app = express();
 const bodyParser = require('body-parser');
-const request = require('request');
 const os = require('os');
+const reduce = require('lodash.reduce');
+const request = require('request');
 
 const postData = require('./controllers/post-data');
 
@@ -12,14 +13,14 @@ app.use(bodyParser.urlencoded({
 }));
 app.use('/tessellate', postData);
 
-let name = '';
-
-if (os.networkInterfaces().eth0 && Array.isArray(os.networkInterfaces().eth0)) {
-  const eth0 = os.networkInterfaces().eth0[0];
-  if (eth0.mac) {
-    name = eth0.mac.toString();
+let name = reduce(os.networkInterfaces(), (mac, interface) => {
+  if (!mac, Array.isArray(interface) && interface[0].mac) {
+    if (parseInt(interface[0].mac.replace(':', ''), 10) > 0) {
+      mac = interface[0].mac;
+    }
   }
-}
+  return mac;
+});
 
 const payload = {
   name,
@@ -31,6 +32,7 @@ setInterval(() => {
     url: 'http://localhost:1976/tessellate',
     form: payload
   };
+  console.log('Sending:', payload)
   request.post(httpRequestOptions, function(error, response, body){});
 }, 60000);
 
