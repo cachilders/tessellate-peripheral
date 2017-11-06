@@ -1,7 +1,6 @@
 local payload = {
-  ['ip'] = wifi.sta.getip(),
   ['name'] = wifi.sta.getmac(),
-  ['message'] = 'NodeMCU Lua Prealpha (2)'
+  ['message'] = 'NodeMCU Lua Prealpha'
 }
 
 print('Sending', sjson.encode(payload))
