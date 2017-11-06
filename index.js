@@ -27,11 +27,7 @@ if (os.networkInterfaces().eth0 && Array.isArray(os.networkInterfaces().eth0)) {
 const payload = {
   name,
   message: 'Tessel Prealpha',
-}
-
-request('http://ifconfig.io/ip', function(error, response, ip) {
-  payload.ip = ip;
-});
+};
 
 setInterval(() => {
   blueLight.toggle();
@@ -44,6 +40,4 @@ setInterval(() => {
 }, 60000);
 
 app.set('port', 1977);
-app.listen(app.get('port'), function(req, res){
-  console.log('Express app listening on port:', app.get('port'));
-});
+app.listen(app.get('port'));
