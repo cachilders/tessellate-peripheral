@@ -1,11 +1,8 @@
-const tessel = require('tessel');
 const express = require('express');
 const app = express();
 const bodyParser = require('body-parser');
 const request = require('request');
 const os = require('os');
-
-const blueLight = tessel.led[3];
 
 const postData = require('./controllers/post-data');
 
@@ -26,18 +23,16 @@ if (os.networkInterfaces().eth0 && Array.isArray(os.networkInterfaces().eth0)) {
 
 const payload = {
   name,
-  message: 'Tessel Prealpha',
+  message: 'RPi JS Prealpha',
 };
 
 setInterval(() => {
-  blueLight.toggle();
   var httpRequestOptions = {
-    url: 'http://localhost:1977/tessellate',
+    url: 'http://localhost:1976/tessellate',
     form: payload
   };
   request.post(httpRequestOptions, function(error, response, body){});
-  blueLight.toggle();
 }, 60000);
 
-app.set('port', 1977);
+app.set('port', 1976);
 app.listen(app.get('port'));

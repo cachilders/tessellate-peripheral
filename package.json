@@ -7,7 +7,7 @@
     "test": "echo \"Error: no test specified\" && exit 1",
     "start": "node index.js"
   },
-  "repository": "www.github.com/tessel/t2-cli",
+  "repository": "https://github.com/cachilders/tessellate-peripheral",
   "keywords": [
     "tessel",
     "johnny-five",
@@ -21,7 +21,6 @@
     "body-parser": "^1.18.2",
     "express": "^4.16.2",
     "request": "^2.83.0",
-    "router": "^1.3.2",
-    "tessel": "^0.3.25"
+    "router": "^1.3.2"
   }
 }
