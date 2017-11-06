@@ -13,18 +13,20 @@ app.use(bodyParser.urlencoded({
 }));
 app.use('/tessellate', postData);
 
-let name = reduce(os.networkInterfaces(), (mac, interface) => {
-  if (!mac, Array.isArray(interface) && interface[0].mac) {
-    if (parseInt(interface[0].mac.replace(':', ''), 10) > 0) {
-      mac = interface[0].mac;
+let name = reduce(os.networkInterfaces(), (mac, net) => {
+  if (!mac && Array.isArray(net) && net[0].mac) {
+    if (reduce(net[0].mac.split(/:/), (sum, num) => {
+      return sum + parseInt(num, 16)
+    }, 0) > 0) {
+      mac = net[0].mac;
     }
   }
   return mac;
-});
+}, '');
 
 const payload = {
   name,
-  message: 'RPi JS Prealpha',
+  message: 'Device-Agnostic JS Prealpha',
 };
 
 setInterval(() => {
