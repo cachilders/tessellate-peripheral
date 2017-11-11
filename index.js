@@ -1,11 +1,11 @@
-const express = require('express');
-const app = express();
-const bodyParser = require('body-parser');
-const os = require('os');
-const reduce = require('lodash.reduce');
-const request = require('request');
+var express = require('express');
+var app = express();
+var bodyParser = require('body-parser');
+var os = require('os');
+var reduce = require('lodash.reduce');
+var request = require('request');
 
-const postData = require('./controllers/post-data');
+var postData = require('./controllers/post-data');
 
 app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({
@@ -13,7 +13,7 @@ app.use(bodyParser.urlencoded({
 }));
 app.use('/tessellate', postData);
 
-let name = reduce(os.networkInterfaces(), (mac, net) => {
+var name = reduce(os.networkInterfaces(), (mac, net) => {
   if (!mac && Array.isArray(net) && net[0].mac) {
     if (reduce(net[0].mac.split(/:/), (sum, num) => {
       return sum + parseInt(num, 16)
@@ -24,7 +24,7 @@ let name = reduce(os.networkInterfaces(), (mac, net) => {
   return mac;
 }, '');
 
-const payload = {
+var payload = {
   name,
   message: 'Device-Agnostic JS Prealpha',
 };
