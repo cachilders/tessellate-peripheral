@@ -9,8 +9,9 @@ const char* host = "tessellatecore-env.hfeqqqyqqv.us-east-1.elasticbeanstalk.com
 void setup() {
   Serial.begin(115200);
   delay(100);
-  
+
   WiFi.begin(ssid, password);
+  WiFi.enableAP(0);  
 }
  
 void loop() {
