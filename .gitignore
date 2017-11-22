@@ -1,4 +1,6 @@
-node_modules
 .DS_Store
-credentials.lua
 .vs
+.vscode
+node_modules
+credentials.lua
+credentials.h
