@@ -31,13 +31,13 @@
     <AppXManifest Include="C:\Users\cachi\git\tessellate-peripheral\bin\ARM\Debug\Core\AppxManifest.xml">
       <PackagePath>AppxManifest.xml</PackagePath>
       <ReRegisterAppIfChanged>true</ReRegisterAppIfChanged>
-      <Modified>2017-11-22T08:37:23.589</Modified>
+      <Modified>2017-11-22T20:33:51.057</Modified>
     </AppXManifest>
   </ItemGroup>
   <ItemGroup>
     <AppxPackagedFile Include="C:\Users\cachi\git\tessellate-peripheral\bin\ARM\Debug\TessellatePeripheral.winmd">
       <PackagePath>TessellatePeripheral.winmd</PackagePath>
-      <Modified>2017-11-22T08:37:20.719</Modified>
+      <Modified>2017-11-22T20:33:46.151</Modified>
     </AppxPackagedFile>
     <AppxPackagedFile Include="C:\Users\cachi\.nuget\packages\microsoft.csharp\4.0.1\lib\netcore50\Microsoft.CSharp.dll">
       <PackagePath>Microsoft.CSharp.dll</PackagePath>
@@ -536,7 +536,7 @@
     <AppxPackagedFile Include="C:\Users\cachi\git\tessellate-peripheral\bin\ARM\Debug\resources.pri">
       <PackagePath>resources.pri</PackagePath>
       <ReRegisterAppIfChanged>true</ReRegisterAppIfChanged>
-      <Modified>2017-11-22T03:00:19.454</Modified>
+      <Modified>2017-11-22T15:58:07.653</Modified>
     </AppxPackagedFile>
     <AppxPackagedFile Include="C:\Users\cachi\git\tessellate-peripheral\bin\ARM\Debug\Core\UWPShim.exe">
       <PackagePath>UWPShim.exe</PackagePath>

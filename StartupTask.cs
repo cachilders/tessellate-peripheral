@@ -1,9 +1,9 @@
 ﻿using System;
-using System.Collections.Specialized;
+using System.Linq;
 using System.Text;
 using System.Net.Http;
-using System.Net.Http.Headers;
 using Windows.ApplicationModel.Background;
+using Windows.System.Threading;
 
 // The Background Application template is documented at http://go.microsoft.com/fwlink/?LinkID=533884&clcid=0x409
 
@@ -11,28 +11,45 @@ namespace TessellatePeripheral
 {
     public sealed class StartupTask : IBackgroundTask
     {
+        BackgroundTaskDeferral _deferral;
+
+        public ThreadPoolTimer timer { get; private set; }
+
         public async void Run(IBackgroundTaskInstance taskInstance)
         {
-            BackgroundTaskDeferral deferral = taskInstance.GetDeferral();
+            _deferral = taskInstance.GetDeferral();
 
             var uri = new Uri("http://tessellatecore-env.hfeqqqyqqv.us-east-1.elasticbeanstalk.com/io/tessellate");
 
-            // string name = "00:00:11:00:00";
-            // string message = "Dragonboard Windows IoT Prealpha";
+            string name = string.Empty; // TODO: Need to rectify the below commented problem and generate this data.
+            string message = "Dragonboard Windows IoT Prealpha";
 
-            string payload = "{\"name\": \"00:00:00:00:00\", \"message\": \"Dragonboard Windows IoT Prealpha\"}";
+            // Apparently this machinery is disabled in Win IOT. The alternative pinging localhost:8080/api/networking/ipconfig
+            // seems prohibitively cumbersome at the moment.
 
-            var client = new HttpClient();
-            var request = new HttpRequestMessage(HttpMethod.Post, uri);
-            request.Content = new StringContent(payload, Encoding.UTF8, "application/json");
+            // NetworkInterface[] nics = NetworkInterface.GetAllNetworkInterfaces();
+            // foreach(NetworkInterface adapter in nics)
+            // {
+            //     if (name == string.Empty)
+            //     {
+            //         IPInterfaceProperties properties = adapter.GetIPProperties();
+            //         name = adapter.GetPhysicalAddress().ToString();
+            //     }
+            // };
 
-            System.Diagnostics.Debug.WriteLine(request);
+            string payload = $"{{\"name\": \"{name}\", \"message\": \"{message}\"}}";
 
-            var response = await client.SendAsync(request);
+            this.timer = ThreadPoolTimer.CreatePeriodicTimer(Post_Data, TimeSpan.FromSeconds(60));
 
-            System.Diagnostics.Debug.WriteLine(response);
-
-            deferral.Complete();
+            async void Post_Data(ThreadPoolTimer timer)
+            {
+                var client = new HttpClient();
+                var request = new HttpRequestMessage(HttpMethod.Post, uri);
+                request.Content = new StringContent(payload, Encoding.UTF8, "application/json");
+                System.Diagnostics.Debug.WriteLine(request);
+                var response = await client.SendAsync(request);
+                System.Diagnostics.Debug.WriteLine(response);
+            }
         }
     }
 }
