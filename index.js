@@ -5,7 +5,12 @@ const bodyParser = require('body-parser');
 const request = require('request');
 const os = require('os');
 
-const blueLight = tessel.led[3];
+const led = tessel.led;
+
+const redLed = led[0].off();
+const amberLed = led[1].off();
+const greenLed = led[2].off();
+const blueLed = led[3].off();
 
 const postData = require('./controllers/post-data');
 
@@ -26,17 +31,23 @@ if (os.networkInterfaces().eth0 && Array.isArray(os.networkInterfaces().eth0)) {
 
 const payload = {
   name,
-  message: 'Tessel Prealpha',
+  message: 'Tessel 2 Prealpha',
 };
 
 setInterval(() => {
-  blueLight.toggle();
   var httpRequestOptions = {
     url: 'http://localhost:1977/tessellate',
     form: payload
   };
-  request.post(httpRequestOptions, function(error, response, body){});
-  blueLight.toggle();
+  amberLed.on();
+  request.post(httpRequestOptions, (error) => {
+    if (error) {
+      redLed.on();
+    } else {
+      amberLed.off();
+      if (redLed.isOn) redLed.off();
+    }
+  });
 }, 60000);
 
 app.set('port', 1977);

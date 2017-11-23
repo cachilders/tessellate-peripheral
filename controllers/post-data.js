@@ -7,11 +7,9 @@ var httpRequestOptions = {
   json: true
 };
 
-router.post('/', function(req, res) {
+router.post('/', (req, res) => {
   httpRequestOptions.body = req.body;
-  request.post(httpRequestOptions, function(error, response, body) {
-    res.send();
-  });
+  request.post(httpRequestOptions, (error) => res.send(error));
 })
 
 module.exports = router;
