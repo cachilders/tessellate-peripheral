@@ -4,7 +4,7 @@
 const char* ssid     = SSID;
 const char* password = PASSWORD;
  
-const char* host = "tessellatecore-env.hfeqqqyqqv.us-east-1.elasticbeanstalk.com";
+const char* host = "tessellate.cc";
  
 void setup() {
   Serial.begin(115200);
