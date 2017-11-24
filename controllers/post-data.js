@@ -3,7 +3,7 @@ var router  = express.Router();
 var request = require('request');
 
 var httpRequestOptions = {
-  url: 'http://tessellatecore-env.hfeqqqyqqv.us-east-1.elasticbeanstalk.com/io/tessellate',
+  url: 'http://tessellate.cc/io/tessellate',
   json: true
 };
 
