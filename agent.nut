@@ -1,4 +1,4 @@
-url <- "http://tessellatecore-env.hfeqqqyqqv.us-east-1.elasticbeanstalk.com/io/tessellate"
+url <- "http://tessellate.cc/io/tessellate"
 name <- "";
 
 function postTile (mac) {
