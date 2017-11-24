@@ -19,7 +19,7 @@ namespace TessellatePeripheral
         {
             _deferral = taskInstance.GetDeferral();
 
-            var uri = new Uri("http://tessellatecore-env.hfeqqqyqqv.us-east-1.elasticbeanstalk.com/io/tessellate");
+            var uri = new Uri("http://tessellate.cc/io/tessellate");
 
             string name = string.Empty; // TODO: Need to rectify the below commented problem and generate this data.
             string message = "Dragonboard Windows IoT Prealpha";
