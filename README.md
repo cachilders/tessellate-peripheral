@@ -1,1 +1,1 @@
-Expensive, cute, and user friendly. You'll need the appropriate libraries in your quiver to compile and load, but the [one button installer](https://microsoft.github.io/azure-iot-developer-kit/docs/get-started/) make all of that trivial.
+Expensive, cute, and user friendly. You'll need the appropriate libraries in your quiver to compile and load, but the [one button installer](https://microsoft.github.io/azure-iot-developer-kit/docs/get-started/) makes all of that trivial.
