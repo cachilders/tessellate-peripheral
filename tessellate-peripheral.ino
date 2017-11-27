@@ -1,55 +1,49 @@
-/*
-WiFi connection code derived from https://github.com/bportaluri/WiFiEsp/blob/master/examples/WebClient/WebClient.ino
-*/
-
-#include <WiFiEsp.h>
+#include <AZ3166WiFi.h>
+#include <OledDisplay.h>
 #include "credentials.h"
 
-#ifndef HAVE_HWSERIAL1
-#include "SoftwareSerial.h"
-SoftwareSerial Serial1(6, 7); // RX, TX
-#endif
- 
-const char ssid[] = SSID;
-const char pass[] = PASSWORD;
+int GREEN_PWM_PIN_PB3 = 19; 
+
+char ssid[] = SSID;
+char pass[] = PASSWORD;
 
 int status = WL_IDLE_STATUS;
 
-const char* server = "tessellate.cc";
-
-WiFiEspClient client;
+char host[] = "tessellate.cc";
  
 void setup() {
-  // initialize serial for debugging
+  analogWrite(GREEN_PWM_PIN_PB3, 0);
+
   Serial.begin(115200);
-  // initialize serial for ESP module
-  Serial1.begin(9600);
-  // initialize ESP module
-  WiFi.init(&Serial1);
 
   // check for the presence of the shield
   if (WiFi.status() == WL_NO_SHIELD) {
-    Serial.println("WiFi shield not present");
-    // don't continue
+    // this should be impossible; most likely boilerplate
+    Screen.print("WiFi shield not present");
     while (true);
   }
 
   // attempt to connect to WiFi network
   while ( status != WL_CONNECTED) {
-    Serial.print("Attempting to connect.");
+    Screen.print(ssid);
     status = WiFi.begin(ssid, pass);
+    delay(10000);
   }
 }
  
 void loop() {
   delay(60000);
 
-  Serial.println(server);
+  WiFiClient client;
 
-  if (!client.connect(server, 80)) {
-    Serial.println("connection failed");
+  const int httpPort = 80;
+
+  if (!client.connect(host, httpPort)) {
+    Screen.print("something\nwent wrong");
     return;
   }
+
+  Screen.print(host);
   
   byte mac[6];
   WiFi.macAddress(mac);
@@ -59,17 +53,18 @@ void loop() {
                 String(mac[2], HEX) + ":" +
                 String(mac[1], HEX) + ":" +
                 String(mac[0], HEX);
-  String message = "ESP8266 Arduino Prealpha";
+  String message = "MXChip AZ3166 Arduino Prealpha";
   String url = "/io/tessellate";
   String payload = "{\"name\":\" " + name + "\", \"message\":\" " + message + "\"}";
   
-  // This will send the request to the server
+  analogWrite(GREEN_PWM_PIN_PB3, 20);
   client.print(String("POST ") + url + " HTTP/1.1\r\n" +
-    "Host: " + server + "\r\n" + 
+    "Host: " + host + "\r\n" + 
     "Content-Type: application/json\r\n"
     "Accept: application/json\r\n"
     "Content-Length: " + payload.length() + "\r\n"
     "Connection: close\r\n\r\n" + 
     payload);
+    analogWrite(GREEN_PWM_PIN_PB3, 0);
   delay(500);
 }
