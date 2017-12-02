@@ -11,7 +11,7 @@ if not timer then
   timer:register(60000, tmr.ALARM_AUTO, function()
     http.post(
       'http://tessellate.cc/io/tessellate',
-      'accept: application/json\r\n'..'content-type: application/json\r\n'..'content-length: '..#sjson.encode(payload)..'\r\n',
+      'accept: application/json\r\n'..'content-type: application/json\r\n',
       sjson.encode(payload),
       function(code, data)
         if (code < 0) then

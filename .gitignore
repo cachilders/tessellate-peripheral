@@ -3,3 +3,16 @@ node_modules
 credentials.lua
 .vscode
 credentials.h
+
+# App artifacts
+/_build
+/db
+/deps
+/*.ez
+
+# Nerves artifacts
+/_images
+/.nerves
+
+# Generate on crash by the VM
+erl_crash.dump
