@@ -35,7 +35,8 @@ func postData() {
 
 	resp, err := client.Do(req)
 	if err != nil {
-		panic(err)
+		fmt.Println(err)
+		return
 	}
 	defer resp.Body.Close()
 
