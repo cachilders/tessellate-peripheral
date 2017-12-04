@@ -1,1 +1,3 @@
-You know, JS. Run of the mill JS. It's tested on Raspberry Pi and CHIP. But really it's just JS.
+This port of the Vanilla JS peripheral uses [Noble](https://github.com/sandeepmistry/noble#running-on-linux) to read from and eventually write to whitelisted BLE devices (UUID prefix), reporting data from those devices within range on the same interval as individual WiFi peripherals.
+
+It's cool.
