@@ -3,3 +3,4 @@ node_modules
 credentials.lua
 .vscode
 credentials.h
+*.log
