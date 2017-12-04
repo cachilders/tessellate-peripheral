@@ -2,4 +2,4 @@ tessellate-peripheral is a new project with an undetermined course. At its heart
 
 It will grow.
 
-Ports are separated by branch. Current software platforms are vanilla JS, a Tessel 2 flavor of JS, Lua for ESP8266, Arduino for ESP8266 and MXChip, Windows 10 IoT, Python, C++/Spark for Particle, Golang, and Squirrel for Electric Imp.
+Ports are separated by branch. Current software platforms are vanilla JS, a Tessel 2 flavor of JS, Lua for ESP8266, Arduino for ESP8266 and MXChip, Windows 10 IoT, Python, C++/Spark for Particle, Golang, and Squirrel for Electric Imp. There is also a JS gateway for bridging BLE devices that currently works with Bean/Bean+.
