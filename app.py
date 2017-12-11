@@ -21,5 +21,6 @@ def broadcast():
   req = requests.post(url=URL, headers=HEADERS, data = PAYLOAD)
   res = req.text
   print(res)
+  req.close()
 
 interval = set_interval(broadcast, 60)
