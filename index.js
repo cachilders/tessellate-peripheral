@@ -10,7 +10,14 @@ var postData = require('./controllers/post-data');
 
 var RSSI_THRESHOLD = -90;
 var EXIT_GRACE_PERIOD = 20000;
-var WHITELIST = ['A495']; // <-- Bean UUID prefix;  ALL-CAPS
+/* The whitelist is a temporary solution for nonexistent 
+client code and an anemic gateway. I mean this thing is
+basically nothing, but it'll be something big one day.
+*/
+var WHITELIST = [
+  'A495'/* Bean */,
+  '6E40'/* espruino micro:bit */
+]; /* UUID prefix;  ALL-CAPS */
 var inRange = {};
 
 noble.on('stateChange', function(state) {
